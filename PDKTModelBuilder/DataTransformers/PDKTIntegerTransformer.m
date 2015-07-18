@@ -9,15 +9,10 @@
 #import "PDKTIntegerTransformer.h"
 
 @implementation PDKTIntegerTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
-    if (![object respondsToSelector:@selector(intValue)])
-    {
+- (id)tranformValueFromObject:(id)object {
+    if (![object respondsToSelector:@selector(intValue)]) {
         return [NSNumber numberWithInt:0];
     }
-    
     return [NSNumber numberWithInt:[object intValue]];
 }
-
 @end

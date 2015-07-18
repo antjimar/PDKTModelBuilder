@@ -9,7 +9,7 @@
 #import "__PDKTCoreDataEntityRelationshipOneToOne.h"
 
 @implementation __PDKTCoreDataEntityRelationshipOneToOne
-- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
+- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     id relationshipData = [dictionary valueForKeyPath:self.keyPath];
     if ([relationshipData isKindOfClass:[NSDictionary class]]) {
         id item = [self parseItemData:relationshipData withClass:self.relatedClass inManagedObjectContext:managedObjectContext];
@@ -18,7 +18,7 @@
         }
     }
 }
-- (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
+- (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     return [itemClass updateOrInsertIntoManagedObjectContext:managedObjectContext withDictionary:itemData];
 }
 @end

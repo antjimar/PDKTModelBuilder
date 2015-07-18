@@ -18,8 +18,7 @@
 @property (strong,nonatomic) NSDictionary *dictionary;
 @end
 @implementation PDKTEntityDataParser
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity
-{
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     self = [super init];
     if (self) {
         self.entity = entity;
@@ -27,19 +26,19 @@
     }
     return self;
 }
-- (NSDictionary *)sourceDictionaryWithDictionary:(NSDictionary *)dictionary forEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
+- (NSDictionary *)sourceDictionaryWithDictionary:(NSDictionary *)dictionary forEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     NSDictionary *sourceDictionary = dictionary;
     if ([[entity class] respondsToSelector:@selector(customDataDictionaryWithSourceDataDictionary:)]) {
         sourceDictionary = [[entity class] customDataDictionaryWithSourceDataDictionary:dictionary];
     }
     return sourceDictionary;
 }
-- (void)executeDataParsing{
+- (void)executeDataParsing {
     [self parseDictionary:self.dictionary withEntity:self.entity];
     [self parseRelationshipsInDictionary:self.dictionary withEntity:self.entity];
 }
 #pragma mark - Automated properties parsing
-- (void)parseDictionary:(NSDictionary *)dictionary withEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
+- (void)parseDictionary:(NSDictionary *)dictionary withEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     NSDictionary *propertiesBindings = [[self class] propertiesBindingsForEntity:entity];
     NSDictionary *propertiesTypeTransformers = [[self class] propertiesTypeTransformersForEntity:entity];
     [propertiesBindings enumerateKeysAndObjectsUsingBlock:^(NSString *entityPropertyName, NSString *sourcePath, BOOL *stop) {
@@ -56,13 +55,13 @@
 
 
 @implementation PDKTEntityDataParser(PropertyParse)
-+ (NSDictionary *)propertiesBindingsForEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
++ (NSDictionary *)propertiesBindingsForEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     return @{};
 }
-+ (NSDictionary *)propertiesTypeTransformersForEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
++ (NSDictionary *)propertiesTypeTransformersForEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     return @{};
 }
-+ (id)propertyValueForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary forEntityClass:(Class)entityClass{
++ (id)propertyValueForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary forEntityClass:(Class)entityClass {
     NSAssert([entityClass conformsToProtocol:@protocol(PDKTModelBuilderEntity)], @"entityClass must conform PDKTModelBuilderEntity");
     NSDictionary *propertiesBindings = @{};
     if ([entityClass respondsToSelector:@selector(propertiesBindings)]) {
@@ -75,7 +74,7 @@
     }
     return [self propertyValueForKey:key sourcePath:sourcePath inDictionary:dictionary withTransformers:propertiesTypeTransformers];
 }
-+ (id)propertyValueForKey:(NSString *)key sourcePath:(NSString *)sourcePath inDictionary:(NSDictionary *)dictionary withTransformers:(NSDictionary *)propertiesTypeTransformers{
++ (id)propertyValueForKey:(NSString *)key sourcePath:(NSString *)sourcePath inDictionary:(NSDictionary *)dictionary withTransformers:(NSDictionary *)propertiesTypeTransformers {
     id propertyValue;
     id rawValue = [dictionary valueForKeyPath:sourcePath];
     if (rawValue && ![rawValue isKindOfClass:[NSNull class]]) {

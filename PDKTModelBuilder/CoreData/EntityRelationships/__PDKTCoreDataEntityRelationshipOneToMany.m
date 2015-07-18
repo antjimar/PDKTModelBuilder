@@ -9,7 +9,7 @@
 #import "__PDKTCoreDataEntityRelationshipOneToMany.h"
 
 @implementation __PDKTCoreDataEntityRelationshipOneToMany
-- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
+- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     id relationshipData = [dictionary valueForKeyPath:self.keyPath];
     if ([relationshipData isKindOfClass:[NSArray class]]) {
         for (NSDictionary *relationshipItem in relationshipData) {
@@ -20,10 +20,10 @@
         }
     }
 }
-- (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
+- (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     return [itemClass updateOrInsertIntoManagedObjectContext:managedObjectContext withDictionary:itemData];
 }
-- (void)addItem:(id)item toEntity:(NSManagedObject *)entity toColletionInPropertyWithName:(NSString *)relationshipPropertyName{
+- (void)addItem:(id)item toEntity:(NSManagedObject *)entity toColletionInPropertyWithName:(NSString *)relationshipPropertyName {
     NSSet *relationShipSet = [entity valueForKey:relationshipPropertyName];
     if (![relationShipSet containsObject:item]) {
         NSString *addObjectsSelectorName = [NSString stringWithFormat:@"add%@Object:", [relationshipPropertyName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[relationshipPropertyName substringToIndex:1] capitalizedString]]];

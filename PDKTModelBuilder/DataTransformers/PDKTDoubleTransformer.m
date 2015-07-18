@@ -9,15 +9,10 @@
 #import "PDKTDoubleTransformer.h"
 
 @implementation PDKTDoubleTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
-    if (![object respondsToSelector:@selector(doubleValue)])
-    {
+- (id)tranformValueFromObject:(id)object {
+    if (![object respondsToSelector:@selector(doubleValue)]) {
         return [NSNumber numberWithDouble:0];
     }
-    
     return [NSNumber numberWithDouble:[object doubleValue]];
 }
-
 @end

@@ -6,19 +6,13 @@
 //  Copyright (c) 2012 , Inc. All rights reserved.
 //
 
-
 #import "PDKTStringTransformer.h"
 
 @implementation PDKTStringTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
-    if (!object || [object isEqual:[NSNull null]])
-    {
+- (id)tranformValueFromObject:(id)object {
+    if (!object || [object isEqual:[NSNull null]]) {
         return @"";
     }
-    
     return [NSString stringWithFormat:@"%@", object];
 }
-
 @end

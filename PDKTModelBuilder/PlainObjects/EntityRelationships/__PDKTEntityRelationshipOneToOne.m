@@ -9,7 +9,7 @@
 #import "__PDKTEntityRelationshipOneToOne.h"
 
 @implementation __PDKTEntityRelationshipOneToOne
-- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSObject *)entity relationshipProperty:(NSString *)relationshipProperty{
+- (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSObject *)entity relationshipProperty:(NSString *)relationshipProperty {
     
 }
 @end

@@ -9,20 +9,17 @@
 #import "PDKTDateTransformer.h"
 
 @implementation PDKTDateTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
-    if (!object || [object isEqual:[NSNull null]])
-    {
+- (id)tranformValueFromObject:(id)object {
+    if (!object || [object isEqual:[NSNull null]]) {
         return nil;
     }
-    NSString *objectDescription=[NSString stringWithFormat:@"%@", object];
-    NSDate *date=nil;
+    NSString *objectDescription = [NSString stringWithFormat:@"%@", object];
+    NSDate *date = nil;
     NSCharacterSet *alphaNumbersSet = [NSCharacterSet decimalDigitCharacterSet];
     NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:objectDescription];
     if ([alphaNumbersSet isSupersetOfSet:stringSet]) {
         date = [NSDate dateWithTimeIntervalSince1970:[objectDescription integerValue]];
-    }else{
+    } else {
         static dispatch_once_t onceToken;
         static NSDateFormatter *entyPropertyDateFormatter;
         dispatch_once(&onceToken, ^{
@@ -33,5 +30,4 @@
     }
     return date;
 }
-
 @end
