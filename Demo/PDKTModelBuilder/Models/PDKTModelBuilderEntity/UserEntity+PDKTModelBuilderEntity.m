@@ -23,7 +23,7 @@
 + (NSDictionary *)propertiesTypeTransformers{
     return @{
              @"userBlogURL":[PDKTURLTransformer new],
-             @"userModificationDateUnixTimeStamp":[PDKTIntegerTransformer new]
+             @"userModificationDateUnixTimestamp":[PDKTIntegerTransformer new]
              };
 }
 + (NSDictionary *)relationshipsBindings{
@@ -48,6 +48,6 @@
     return dataDictionary;
 }
 + (NSString *)comparableAttribute {
-    return @"userModificationDateUnixTimeStamp";
+    return @"userModificationDateUnixTimestamp";
 }
 @end

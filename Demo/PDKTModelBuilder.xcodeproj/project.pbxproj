@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		798D5AE71B5A6B0D0083B473 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 798D5AE61B5A6B0D0083B473 /* UserEntity.m */; };
+		798D5AEA1B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 798D5AE91B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.m */; };
 		883ACA111A041786006139C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA101A041786006139C6 /* main.m */; };
 		883ACA141A041786006139C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA131A041786006139C6 /* AppDelegate.m */; };
 		883ACA171A041786006139C6 /* PDKTModelBuilder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA151A041786006139C6 /* PDKTModelBuilder.xcdatamodeld */; };
@@ -66,6 +67,8 @@
 /* Begin PBXFileReference section */
 		798D5AE51B5A6B0D0083B473 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserEntity.h; sourceTree = "<group>"; };
 		798D5AE61B5A6B0D0083B473 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
+		798D5AE81B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKDataFromDictionaryTransformer.h; sourceTree = "<group>"; };
+		798D5AE91B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKDataFromDictionaryTransformer.m; sourceTree = "<group>"; };
 		883ACA0B1A041786006139C6 /* PDKTModelBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDKTModelBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883ACA0F1A041786006139C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883ACA101A041786006139C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				883ACAC61A043815006139C6 /* PDKTStringTransformer.m */,
 				883ACAC71A043815006139C6 /* PDKTURLTransformer.h */,
 				883ACAC81A043815006139C6 /* PDKTURLTransformer.m */,
+				798D5AE81B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.h */,
+				798D5AE91B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.m */,
 			);
 			path = DataTransformers;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				883ACA111A041786006139C6 /* main.m in Sources */,
 				883ACAD31A0438C9006139C6 /* NSObject+PDKTModelBuilder.m in Sources */,
 				883ACAB61A0437DC006139C6 /* PDKTEntityRelationship.m in Sources */,
+				798D5AEA1B5A6C8B0083B473 /* PDKDataFromDictionaryTransformer.m in Sources */,
 				883ACA691A0417BA006139C6 /* __PDKTCoreDataEntityRelationshipOneToOne.m in Sources */,
 				883ACACF1A043815006139C6 /* PDKTStringTransformer.m in Sources */,
 			);
