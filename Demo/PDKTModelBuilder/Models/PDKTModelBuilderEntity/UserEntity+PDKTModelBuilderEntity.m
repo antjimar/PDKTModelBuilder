@@ -16,12 +16,14 @@
              @"userId":@"id",
              @"userName":@"name",
              @"userEmail":@"email",
-             @"userBlogURL":@"blog_url"
+             @"userBlogURL":@"blog_url",
+             @"userModificationDateUnixTimestamp":@"updated_at"
              };
 }
 + (NSDictionary *)propertiesTypeTransformers{
     return @{
-             @"userBlogURL":[PDKTURLTransformer new]
+             @"userBlogURL":[PDKTURLTransformer new],
+             @"userModificationDateUnixTimeStamp":[PDKTIntegerTransformer new]
              };
 }
 + (NSDictionary *)relationshipsBindings{
@@ -44,5 +46,8 @@
     }
     
     return dataDictionary;
+}
++ (NSString *)comparableAttribute {
+    return @"userModificationDateUnixTimeStamp";
 }
 @end

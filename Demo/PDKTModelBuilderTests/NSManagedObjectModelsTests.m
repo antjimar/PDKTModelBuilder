@@ -147,4 +147,62 @@
     }
 }
 
+- (void)testEqualComparableAttributes {
+    NSDictionary *userDictionary = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"updated_at": @1437216918
+                                     };
+    
+    UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    XCTAssertEqualObjects(user.userId, @"1");
+    XCTAssertEqualObjects(user.userName, @"John Doe");
+    XCTAssertEqualObjects(user.userEmail, @"john.doe@apple.com");
+    XCTAssertEqualObjects(user.userBlogURL, [NSURL URLWithString:@"www.tumblr.com/johndoe"]);
+    
+    NSDate *dateSaved = user.entityUpdateDate;
+    
+    UserEntity *userUpdated = [UserEntity updateOrInsertIfNeededIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    XCTAssertEqualObjects(userUpdated.userId, @"1");
+    XCTAssertEqualObjects(userUpdated.userName, @"John Doe");
+    XCTAssertEqualObjects(userUpdated.userEmail, @"john.doe@apple.com");
+    XCTAssertEqualObjects(userUpdated.userBlogURL, [NSURL URLWithString:@"www.tumblr.com/johndoe"]);
+    XCTAssertEqualObjects(userUpdated.entityUpdateDate, dateSaved);
+}
+
+- (void)testNotEqualComparableAttributes {
+    NSDictionary *userDictionary = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"updated_at": @1437216918
+                                     };
+    
+    UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    XCTAssertEqualObjects(user.userId, @"1");
+    XCTAssertEqualObjects(user.userName, @"John Doe");
+    XCTAssertEqualObjects(user.userEmail, @"john.doe@apple.com");
+    XCTAssertEqualObjects(user.userBlogURL, [NSURL URLWithString:@"www.tumblr.com/johndoe"]);
+    
+    NSDate *dateSaved = user.entityUpdateDate;
+    
+    NSDictionary *userDictionaryUpdated = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe Updated",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"updated_at": @1437216919
+                                     };
+    
+    UserEntity *userUpdated = [UserEntity updateOrInsertIfNeededIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionaryUpdated];
+    XCTAssertEqualObjects(userUpdated.userId, @"1");
+    XCTAssertEqualObjects(userUpdated.userName, @"John Doe Updated");
+    XCTAssertEqualObjects(userUpdated.userEmail, @"john.doe@apple.com");
+    XCTAssertEqualObjects(userUpdated.userBlogURL, [NSURL URLWithString:@"www.tumblr.com/johndoe"]);
+    XCTAssertNotEqualObjects(userUpdated.entityUpdateDate, dateSaved);
+}
+
 @end

@@ -13,6 +13,7 @@
 @optional
 @property (strong,nonatomic) NSDate *entityUpdateDate;
 + (NSString *)entityIdPropertyName;
++ (NSString *)comparableAttribute;
 @end
 
 @class PDKTEntityDataParser;
@@ -22,6 +23,7 @@
 @end
 
 @interface NSManagedObject (PDKTModelBuilder)
++ (instancetype)updateOrInsertIfNeededIntoManagedObjectContext:(NSManagedObjectContext *)managedObjectContext withDictionary:(NSDictionary *)dictionary;
 + (instancetype)updateOrInsertIntoManagedObjectContext:(NSManagedObjectContext *)managedObjectContext withDictionary:(NSDictionary *)dictionary;
 + (instancetype)insertIntoManagedObjectContext:(NSManagedObjectContext *)managedObjectContext withDictionary:(NSDictionary *)dictionary;
 + (instancetype)fetchObjectWithValue:(id)value forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
