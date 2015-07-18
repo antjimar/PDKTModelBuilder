@@ -1,14 +1,14 @@
 //
-//  PDKDataFromDictionaryTransformer.m
+//  PDKTDataFromDictionaryTransformer.m
 //  PDKTModelBuilder
 //
 //  Created by ANTONIO JIMÉNEZ MARTÍNEZ on 18/7/15.
 //  Copyright (c) 2015 Produkt. All rights reserved.
 //
 
-#import "PDKDataFromDictionaryTransformer.h"
+#import "PDKTDataFromDictionaryTransformer.h"
 
-@implementation PDKDataFromDictionaryTransformer
+@implementation PDKTDataFromDictionaryTransformer
 - (id)transformValueFromObject:(id)object {
     if (!object || [object isEqual:[NSNull null]] || ![object isKindOfClass:[NSDictionary class]]) {
         return nil;

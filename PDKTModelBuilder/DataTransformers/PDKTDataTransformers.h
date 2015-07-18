@@ -13,4 +13,5 @@
 #import "PDKTStringTransformer.h"
 #import "PDKTURLTransformer.h"
 #import "PDKTDateTransformer.h"
+#import "PDKTDataFromDictionaryTransformer.h"
 

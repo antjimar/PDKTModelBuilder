@@ -1,5 +1,5 @@
 //
-//  PDKDataFromDictionaryTransformer.h
+//  PDKTDataFromDictionaryTransformer.h
 //  PDKTModelBuilder
 //
 //  Created by ANTONIO JIMÉNEZ MARTÍNEZ on 18/7/15.
@@ -8,6 +8,6 @@
 
 #import "PDKTDataTransformer.h"
 
-@interface PDKDataFromDictionaryTransformer : PDKTDataTransformer
+@interface PDKTDataFromDictionaryTransformer : PDKTDataTransformer
 
 @end
