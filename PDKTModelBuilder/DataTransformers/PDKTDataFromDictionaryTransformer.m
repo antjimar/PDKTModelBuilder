@@ -9,7 +9,7 @@
 #import "PDKTDataFromDictionaryTransformer.h"
 
 @implementation PDKTDataFromDictionaryTransformer
-- (id)transformValueFromObject:(id)object {
+- (id)tranformValueFromObject:(id)object {
     if (!object || [object isEqual:[NSNull null]] || ![object isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
