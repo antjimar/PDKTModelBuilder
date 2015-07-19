@@ -14,8 +14,8 @@
 @end
 
 @interface PDKTEntityDataParser()
-@property (strong,nonatomic) NSObject<PDKTModelBuilderEntity> *entity;
-@property (strong,nonatomic) NSDictionary *dictionary;
+@property (strong, nonatomic) NSObject<PDKTModelBuilderEntity> *entity;
+@property (strong, nonatomic) NSDictionary *dictionary;
 @end
 @implementation PDKTEntityDataParser
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity {

@@ -11,7 +11,7 @@
 
 @protocol PDKTModelBuilderCoreDataEntity <PDKTModelBuilderEntity>
 @optional
-@property (strong,nonatomic) NSDate *entityUpdateDate;
+@property (strong, nonatomic) NSDate *entityUpdateDate;
 + (NSString *)entityIdPropertyName;
 + (NSString *)comparableAttribute;
 @end

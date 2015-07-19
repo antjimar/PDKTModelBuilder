@@ -13,22 +13,22 @@
 @implementation UserEntity (PDKTModelBuilderEntity)
 + (NSDictionary *)propertiesBindings{
     return @{
-             @"userId":@"id",
-             @"userName":@"name",
-             @"userEmail":@"email",
-             @"userBlogURL":@"blog_url",
-             @"userModificationDateUnixTimestamp":@"updated_at"
+             @"userId": @"id",
+             @"userName": @"name",
+             @"userEmail": @"email",
+             @"userBlogURL": @"blog_url",
+             @"userModificationDateUnixTimestamp": @"updated_at"
              };
 }
 + (NSDictionary *)propertiesTypeTransformers{
     return @{
-             @"userBlogURL":[PDKTURLTransformer new],
-             @"userModificationDateUnixTimestamp":[PDKTIntegerTransformer new]
+             @"userBlogURL": [PDKTURLTransformer new],
+             @"userModificationDateUnixTimestamp": [PDKTIntegerTransformer new]
              };
 }
 + (NSDictionary *)relationshipsBindings{
     return @{
-             @"hasPictures":[PDKTCoreDataEntityRelationship oneToManyRelationshipForKeyPath:@"pictures" andClass:[PictureEntity class]]
+             @"hasPictures": [PDKTCoreDataEntityRelationship oneToManyRelationshipForKeyPath:@"pictures" andClass:[PictureEntity class]]
              };
 }
 + (NSDictionary *)customDataDictionaryWithSourceDataDictionary:(NSDictionary *)dictionary{

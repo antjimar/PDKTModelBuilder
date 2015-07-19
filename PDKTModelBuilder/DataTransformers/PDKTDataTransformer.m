@@ -11,7 +11,7 @@
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 @implementation PDKTDataTransformer
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    NSLog(@"\n\n*** '%@' selector must be implemented by the subclass %@ ***\n\n",NSStringFromSelector(aSelector),NSStringFromClass([self class]));
+    NSLog(@"\n\n*** '%@' selector must be implemented by the subclass %@ ***\n\n", NSStringFromSelector(aSelector), NSStringFromClass([self class]));
     [self doesNotRecognizeSelector:aSelector];
     return nil;
 }

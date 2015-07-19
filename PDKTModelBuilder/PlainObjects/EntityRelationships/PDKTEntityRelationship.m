@@ -11,8 +11,8 @@
 #import "__PDKTEntityRelationshipOneToMany.h"
 
 @interface PDKTEntityRelationship()
-@property (copy,nonatomic,readwrite) NSString *keyPath;
-@property (assign,nonatomic,readwrite) Class relatedClass;
+@property (copy, nonatomic, readwrite) NSString *keyPath;
+@property (assign, nonatomic, readwrite) Class relatedClass;
 @end
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 @implementation PDKTEntityRelationship
@@ -32,7 +32,7 @@
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    NSLog(@"\n\n*** '%@' selector must be implemented by the subclass %@ ***\n\n",NSStringFromSelector(aSelector),NSStringFromClass([self class]));
+    NSLog(@"\n\n*** '%@' selector must be implemented by the subclass %@ ***\n\n", NSStringFromSelector(aSelector), NSStringFromClass([self class]));
     [self doesNotRecognizeSelector:aSelector];
     return nil;
 }

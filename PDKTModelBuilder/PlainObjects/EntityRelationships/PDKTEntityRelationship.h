@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PDKTEntityRelationship : NSObject
-@property (copy,nonatomic,readonly) NSString *keyPath;
-@property (assign,nonatomic,readonly) Class relatedClass;
+@property (copy, nonatomic, readonly) NSString *keyPath;
+@property (assign, nonatomic, readonly) Class relatedClass;
 + (instancetype)oneToOneRelationshipForKeyPath:(NSString *)keyPath andClass:(Class)relatedClass;
 + (instancetype)oneToManyRelationshipForKeyPath:(NSString *)keyPath andClass:(Class)relatedClass;
 - (instancetype)initWithKeyPath:(NSString *)keyPath andClass:(Class)relatedClass;

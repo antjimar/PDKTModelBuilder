@@ -15,10 +15,10 @@
     return [self defaultEntityIdPropertyNameForEntityName:NSStringFromClass([self class])];
 }
 + (NSString *)defaultEntityIdPropertyNameForEntityName:(NSString *)entityName {
-    return [[NSString stringWithFormat:@"%@Id",[entityName stringByReplacingOccurrencesOfString:@"Entity" withString:@""]]stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[entityName substringToIndex:1]lowercaseString]];
+    return [[NSString stringWithFormat:@"%@Id", [entityName stringByReplacingOccurrencesOfString:@"Entity" withString:@""]] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[entityName substringToIndex:1] lowercaseString]];
 }
 + (void)validateDefaultObjectId:(NSString *)objectId {
-    __unused NSString *objectIdAssertMessage = [NSString stringWithFormat:@"uniqueId must be '%@' or must implement 'entityIdPropertyName'",objectId];
+    __unused NSString *objectIdAssertMessage = [NSString stringWithFormat:@"uniqueId must be '%@' or must implement 'entityIdPropertyName'", objectId];
     __unused objc_property_t property = class_getProperty([self class], [objectId UTF8String]);
     NSAssert(property, objectIdAssertMessage);
 }
@@ -69,7 +69,7 @@
     if (!objectIdValue) {
         return nil;
     }
-    NSManagedObject<PDKTModelBuilderEntity> *newObject = [NSEntityDescription insertNewObjectForEntityForName:[NSString stringWithFormat:@"%@",entityName] inManagedObjectContext:managedObjectContext];
+    NSManagedObject<PDKTModelBuilderEntity> *newObject = [NSEntityDescription insertNewObjectForEntityForName:[NSString stringWithFormat:@"%@", entityName] inManagedObjectContext:managedObjectContext];
     PDKTEntityDataParser *entityDataParser = [PDKTCoreDataEntityDataParserFactory dataParserForCoreDataEntityWithDictionary:dictionary andEntity:newObject];
     [entityDataParser executeDataParsing];
     return newObject;
@@ -81,12 +81,12 @@
 }
 + (instancetype)fetchObjectWithValue:(id)value forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%@ = %K",value,key];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%@ = %K", value, key];
     fetchRequest.fetchLimit = 1;
     NSError *error = nil;
     NSArray *fetchResult = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"%@",error.userInfo);
+        NSLog(@"%@", error.userInfo);
     }
     NSManagedObject *fetchedObject = [fetchResult lastObject];
     return fetchedObject;
@@ -112,7 +112,7 @@
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
     fetchRequest.fetchLimit = 1;
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%@ = %K",objectIdValue,objectId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%@ = %K", objectIdValue, objectId];
     NSArray *fetchResult = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return [fetchResult lastObject];;
 }

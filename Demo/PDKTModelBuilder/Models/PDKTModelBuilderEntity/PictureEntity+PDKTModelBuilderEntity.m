@@ -12,15 +12,15 @@
 @implementation PictureEntity (PDKTModelBuilderEntity)
 + (NSDictionary *)propertiesBindings{
     return @{
-             @"pictureId":@"id",
-             @"picturePublishedDate":@"published_on",
-             @"pictureURL":@"url"
+             @"pictureId": @"id",
+             @"picturePublishedDate": @"published_on",
+             @"pictureURL": @"url"
              };
 }
 + (NSDictionary *)propertiesTypeTransformers{
     return @{
-             @"picturePublishedDate":[PDKTDateTransformer new],
-             @"pictureURL":[PDKTURLTransformer new]
+             @"picturePublishedDate": [PDKTDateTransformer new],
+             @"pictureURL": [PDKTURLTransformer new]
              };
 }
 @end
