@@ -70,7 +70,7 @@
                                              @"name":@"John Doe",
                                              @"email":@"john.doe@apple.com",
                                              @"blog_url":@"www.tumblr.com/johndoe"
-                                         } mutableCopy];
+                                             } mutableCopy];
     
     UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
     XCTAssertNotNil(user.entityUpdateDate);
@@ -89,17 +89,17 @@
                                      @"email":@"john.doe@apple.com",
                                      @"blog_url":@"www.tumblr.com/johndoe",
                                      @"pictures":@[
-                                                  @{
-                                                    @"id":@"1",
-                                                    @"url":@"www.apple.com/images/picture.jpg",
-                                                    @"published_on":@"1415735002"
-                                                    },
-                                                  @{
-                                                    @"id":@"2",
-                                                    @"url":@"www.apple.com/images/picture2.jpg",
-                                                    @"published_on":@"1415735002"
-                                                    }
-                                         ]
+                                             @{
+                                                 @"id":@"1",
+                                                 @"url":@"www.apple.com/images/picture.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 },
+                                             @{
+                                                 @"id":@"2",
+                                                 @"url":@"www.apple.com/images/picture2.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 }
+                                             ]
                                      };
     
     UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
@@ -121,7 +121,7 @@
                                      @"blog":@{
                                              @"John Doe's blog"
                                              @"url":@"www.tumblr.com/johndoe"
-                                     },
+                                             },
                                      @"user_pictures":@[
                                              @{
                                                  @"id":@"1",
@@ -190,12 +190,12 @@
     NSDate *dateSaved = user.entityUpdateDate;
     
     NSDictionary *userDictionaryUpdated = @{
-                                     @"id":@"1",
-                                     @"name":@"John Doe Updated",
-                                     @"email":@"john.doe@apple.com",
-                                     @"blog_url":@"www.tumblr.com/johndoe",
-                                     @"updated_at": @1437216919
-                                     };
+                                            @"id":@"1",
+                                            @"name":@"John Doe Updated",
+                                            @"email":@"john.doe@apple.com",
+                                            @"blog_url":@"www.tumblr.com/johndoe",
+                                            @"updated_at": @1437216919
+                                            };
     
     UserEntity *userUpdated = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionaryUpdated];
     XCTAssertEqualObjects(userUpdated.userId, @"1");
@@ -203,6 +203,64 @@
     XCTAssertEqualObjects(userUpdated.userEmail, @"john.doe@apple.com");
     XCTAssertEqualObjects(userUpdated.userBlogURL, [NSURL URLWithString:@"www.tumblr.com/johndoe"]);
     XCTAssertNotEqualObjects(userUpdated.entityUpdateDate, dateSaved);
+}
+- (void)testNSManagedObjectsRelationshipsUpdated {
+    NSDictionary *userDictionary = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"pictures":@[
+                                             @{
+                                                 @"id":@"1",
+                                                 @"url":@"www.apple.com/images/picture.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 },
+                                             @{
+                                                 @"id":@"2",
+                                                 @"url":@"www.apple.com/images/picture2.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 }
+                                             ]
+                                     };
+    
+    UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    XCTAssertNotNil(user.hasPictures);
+    XCTAssertNotEqual(user.hasPictures.count, 0);
+    for (PictureEntity *picture in user.hasPictures) {
+        XCTAssert([picture isKindOfClass:[PictureEntity class]]);
+        
+        // Check inverse relationship
+        XCTAssertEqualObjects(picture.author, user);
+    }
+    
+    NSDictionary *userUpdateRelationshipDictionary = @{
+                                                       @"id":@"1",
+                                                       @"name":@"John Doe",
+                                                       @"email":@"john.doe@apple.com",
+                                                       @"blog_url":@"www.tumblr.com/johndoe",
+                                                       @"pictures":@[
+                                                               @{
+                                                                   @"id":@"1",
+                                                                   @"url":@"www.apple.com/images/picture_updated.jpg",
+                                                                   @"published_on":@"1415735002"
+                                                                   },
+                                                               @{
+                                                                   @"id":@"2",
+                                                                   @"url":@"www.apple.com/images/picture2.jpg",
+                                                                   @"published_on":@"1415735002"
+                                                                   }
+                                                               ]
+                                                       };
+    
+    UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
+    XCTAssertNotNil(userUpdateRelations);
+    for (PictureEntity *picture in userUpdateRelations.hasPictures) {
+        if ([picture.pictureId isEqualToString:@"1"]) {
+            XCTAssertEqualObjects(picture.pictureURL, [NSURL URLWithString:@"www.apple.com/images/picture_updated.jpg"]);
+        }
+    }
+    
 }
 
 @end
