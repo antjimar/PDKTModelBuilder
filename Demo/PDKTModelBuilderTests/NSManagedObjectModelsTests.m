@@ -164,7 +164,7 @@
     
     NSDate *dateSaved = user.entityUpdateDate;
     
-    UserEntity *userUpdated = [UserEntity updateOrInsertIfNeededIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    UserEntity *userUpdated = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
     XCTAssertEqualObjects(userUpdated.userId, @"1");
     XCTAssertEqualObjects(userUpdated.userName, @"John Doe");
     XCTAssertEqualObjects(userUpdated.userEmail, @"john.doe@apple.com");
@@ -197,7 +197,7 @@
                                      @"updated_at": @1437216919
                                      };
     
-    UserEntity *userUpdated = [UserEntity updateOrInsertIfNeededIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionaryUpdated];
+    UserEntity *userUpdated = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionaryUpdated];
     XCTAssertEqualObjects(userUpdated.userId, @"1");
     XCTAssertEqualObjects(userUpdated.userName, @"John Doe Updated");
     XCTAssertEqualObjects(userUpdated.userEmail, @"john.doe@apple.com");
