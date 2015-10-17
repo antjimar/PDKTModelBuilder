@@ -65,12 +65,13 @@
         attributeName = [[entity class] comparableAttribute];
     }
     if (attributeName) {
-        // Unix Timestamp
-        NSNumber *apiAttributeValue = [[self class] propertyValueForKey:attributeName inDictionary:dictionary forEntityClass:[entity class]];
+        id apiAttributeValue = [[self class] propertyValueForKey:attributeName inDictionary:dictionary forEntityClass:[entity class]];
         if (apiAttributeValue) {
-            NSNumber *entityComparableAttribute = [entity valueForKey:attributeName];
-            if (entityComparableAttribute && ([apiAttributeValue compare:entityComparableAttribute] == NSOrderedSame)) {
-                entityNeedsParsing = NO;
+            id entityComparableAttribute = [entity valueForKey:attributeName];
+            if ([apiAttributeValue respondsToSelector:@selector(compare:)] && [entityComparableAttribute respondsToSelector:@selector(compare:)]) {
+                if ([apiAttributeValue compare:entityComparableAttribute] == NSOrderedSame) {
+                    entityNeedsParsing = NO;
+                }
             }
         }
     }
