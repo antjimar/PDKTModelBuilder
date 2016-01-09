@@ -14,7 +14,7 @@
     if ([relationshipData isKindOfClass:[NSArray class]]) {
         NSArray *relationshipDataArray = (NSArray *)relationshipData;
         if ([relationshipDataArray count] > 0) {
-            [entity setValue:nil forKey:relationshipProperty];
+            [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
             for (NSDictionary *relationshipItem in relationshipDataArray) {
                 id item = [self parseItemData:relationshipItem withClass:self.relatedClass inManagedObjectContext:managedObjectContext];
                 if (item) {
@@ -22,7 +22,7 @@
                 }
             }
         } else {
-            [entity setValue:nil forKey:relationshipProperty];
+            [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
         }
     }
 }
@@ -44,4 +44,12 @@
         }
     }
 }
+
+#pragma mark - Private
+- (void)removeInContext:(NSManagedObjectContext *)managedObjectContext relationshipProperty:(NSString *)relationshipProperty entity:(NSManagedObject *)entity {
+    for (NSManagedObject *element in [entity valueForKey:relationshipProperty]) {
+        [managedObjectContext deleteObject:element];
+    }
+}
+
 @end

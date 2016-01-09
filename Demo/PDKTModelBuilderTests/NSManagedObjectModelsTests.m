@@ -275,6 +275,7 @@
                                         @"updated_at": @1437216918
                                         };
     PictureEntity *picture = [PictureEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:pictureDictionary];
+    [self.managedObjectContext save:nil];
     XCTAssertNotNil(picture.author);
     XCTAssertNotNil(picture.pictureId);
     
@@ -286,6 +287,7 @@
                                                @"updated_at": @1437216958
                                                };
     PictureEntity *pictureUpdate = [PictureEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:pictureDictionaryUpdated];
+    [self.managedObjectContext save:nil];
     XCTAssertNil(pictureUpdate.author);
     XCTAssertNotNil(pictureUpdate.pictureId);
 }
@@ -311,6 +313,7 @@
                                      };
     
     UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    [self.managedObjectContext save:nil];
     XCTAssertNotNil(user.hasPictures);
     XCTAssertNotEqual(user.hasPictures.count, 0);
     for (PictureEntity *picture in user.hasPictures) {
@@ -329,6 +332,7 @@
                                                        };
     
     UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
+    [self.managedObjectContext save:nil];
     XCTAssertNotNil(userUpdateRelations);
     XCTAssertTrue([userUpdateRelations.hasPictures count] == 0);
 }
@@ -354,6 +358,7 @@
                                      };
     
     UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    [self.managedObjectContext save:nil];
     XCTAssertNotNil(user.hasPictures);
     XCTAssertNotEqual(user.hasPictures.count, 0);
     for (PictureEntity *picture in user.hasPictures) {
@@ -378,6 +383,7 @@
                                                        };
     
     UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
+    [self.managedObjectContext save:nil];
     XCTAssertNotNil(userUpdateRelations);
     XCTAssertTrue([userUpdateRelations.hasPictures count] == 1);
 }
