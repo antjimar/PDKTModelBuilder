@@ -31,6 +31,12 @@
              @"hasPictures": [PDKTCoreDataEntityRelationship oneToManyRelationshipForKeyPath:@"pictures" andClass:[PictureEntity class]]
              };
 }
++ (NSString *)entityName {
+    return @"UserEntity";
+}
++ (NSString *)entityIdPropertyName {
+    return @"userId";
+}
 + (NSDictionary *)customDataDictionaryWithSourceDataDictionary:(NSDictionary *)dictionary{
     NSMutableDictionary *dataDictionary = [dictionary mutableCopy];
     

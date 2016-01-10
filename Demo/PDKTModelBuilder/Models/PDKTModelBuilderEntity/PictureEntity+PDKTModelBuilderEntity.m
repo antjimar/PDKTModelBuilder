@@ -31,6 +31,12 @@
              @"author": [PDKTCoreDataEntityRelationship oneToOneRelationshipForKeyPath:@"author" andClass:[UserEntity class]]
              };
 }
++ (NSString *)entityName {
+    return @"PictureEntity";
+}
++ (NSString *)entityIdPropertyName {
+    return @"pictureId";
+}
 + (NSString *)comparableAttribute {
     return @"pictureModificationDateUnixTimestamp";
 }
