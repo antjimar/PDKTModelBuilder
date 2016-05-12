@@ -2,7 +2,7 @@
 //  UserEntity.h
 //  PDKTModelBuilder
 //
-//  Created by ANTONIO JIMÉNEZ MARTÍNEZ on 18/7/15.
+//  Created by Antonio on 22/7/15.
 //  Copyright (c) 2015 Produkt. All rights reserved.
 //
 
@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString * userEmail;
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSString * userName;
-@property (nonatomic, retain) NSNumber * userModificationDateUnixTimestamp;
+@property (nonatomic, retain) NSNumber * entityUpdateUnixTimestamp;
 @property (nonatomic, retain) NSSet *hasPictures;
 @end
 

@@ -15,7 +15,7 @@
 @dynamic pictureId;
 @dynamic picturePublishedDate;
 @dynamic pictureURL;
-@dynamic pictureModificationDateUnixTimestamp;
 @dynamic author;
+@dynamic pictureModificationDateUnixTimestamp;
 
 @end

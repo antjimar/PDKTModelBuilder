@@ -11,6 +11,9 @@
 #import "UserEntity.h"
 
 @implementation PictureEntity (PDKTModelBuilderEntity)
++ (NSString *)entityName {
+    return @"PictureEntity";
+}
 + (NSDictionary *)propertiesBindings{
     return @{
              @"pictureId": @"id",
@@ -26,16 +29,13 @@
              @"pictureModificationDateUnixTimestamp": [PDKTIntegerTransformer new]
              };
 }
++ (NSString *)entityIdPropertyName {
+    return @"pictureId";
+}
 + (NSDictionary *)relationshipsBindings{
     return @{
              @"author": [PDKTCoreDataEntityRelationship oneToOneRelationshipForKeyPath:@"author" andClass:[UserEntity class]]
              };
-}
-+ (NSString *)entityName {
-    return @"PictureEntity";
-}
-+ (NSString *)entityIdPropertyName {
-    return @"pictureId";
 }
 + (NSString *)comparableAttribute {
     return @"pictureModificationDateUnixTimestamp";
