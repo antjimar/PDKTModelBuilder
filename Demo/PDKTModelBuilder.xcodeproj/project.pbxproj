@@ -10,6 +10,9 @@
 		794C3B211B5C1A86009A2941 /* PDKTDataFromURLImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 794C3B201B5C1A86009A2941 /* PDKTDataFromURLImageTransformer.m */; };
 		798D5AE71B5A6B0D0083B473 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 798D5AE61B5A6B0D0083B473 /* UserEntity.m */; };
 		798D5AEA1B5A6C8B0083B473 /* PDKTDataFromDictionaryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 798D5AE91B5A6C8B0083B473 /* PDKTDataFromDictionaryTransformer.m */; };
+		79DE77821E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DE77811E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.m */; };
+		79DE77851E1FA1E6005862BB /* PDKTISO8601DateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DE77841E1FA1E6005862BB /* PDKTISO8601DateTransformer.m */; };
+		79DE77881E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DE77871E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.m */; };
 		883ACA111A041786006139C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA101A041786006139C6 /* main.m */; };
 		883ACA141A041786006139C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA131A041786006139C6 /* AppDelegate.m */; };
 		883ACA171A041786006139C6 /* PDKTModelBuilder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 883ACA151A041786006139C6 /* PDKTModelBuilder.xcdatamodeld */; };
@@ -72,6 +75,12 @@
 		798D5AE61B5A6B0D0083B473 /* UserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
 		798D5AE81B5A6C8B0083B473 /* PDKTDataFromDictionaryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKTDataFromDictionaryTransformer.h; sourceTree = "<group>"; };
 		798D5AE91B5A6C8B0083B473 /* PDKTDataFromDictionaryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKTDataFromDictionaryTransformer.m; sourceTree = "<group>"; };
+		79DE77801E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKTDateTimeZoneCeroTransformer.h; sourceTree = "<group>"; };
+		79DE77811E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKTDateTimeZoneCeroTransformer.m; sourceTree = "<group>"; };
+		79DE77831E1FA1E6005862BB /* PDKTISO8601DateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKTISO8601DateTransformer.h; sourceTree = "<group>"; };
+		79DE77841E1FA1E6005862BB /* PDKTISO8601DateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKTISO8601DateTransformer.m; sourceTree = "<group>"; };
+		79DE77861E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKTDateTimeWithoutMilisTransformer.h; sourceTree = "<group>"; };
+		79DE77871E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKTDateTimeWithoutMilisTransformer.m; sourceTree = "<group>"; };
 		883ACA0B1A041786006139C6 /* PDKTModelBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDKTModelBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883ACA0F1A041786006139C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883ACA101A041786006139C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -338,6 +347,12 @@
 				883ACAB91A043815006139C6 /* PDKTBoolTransformer.m */,
 				883ACABD1A043815006139C6 /* PDKTDateTransformer.h */,
 				883ACABE1A043815006139C6 /* PDKTDateTransformer.m */,
+				79DE77861E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.h */,
+				79DE77871E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.m */,
+				79DE77801E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.h */,
+				79DE77811E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.m */,
+				79DE77831E1FA1E6005862BB /* PDKTISO8601DateTransformer.h */,
+				79DE77841E1FA1E6005862BB /* PDKTISO8601DateTransformer.m */,
 				883ACABF1A043815006139C6 /* PDKTDoubleTransformer.h */,
 				883ACAC01A043815006139C6 /* PDKTDoubleTransformer.m */,
 				883ACAC11A043815006139C6 /* PDKTFloatTransformer.h */,
@@ -512,15 +527,18 @@
 				883ACA681A0417BA006139C6 /* __PDKTCoreDataEntityRelationshipOneToMany.m in Sources */,
 				883ACA771A0417BA006139C6 /* PDKTEntityDataParser.m in Sources */,
 				883ACA1A1A041786006139C6 /* ViewController.m in Sources */,
+				79DE77881E1FA222005862BB /* PDKTDateTimeWithoutMilisTransformer.m in Sources */,
 				883ACACB1A043815006139C6 /* PDKTDateTransformer.m in Sources */,
 				88619E271A7FC296009AD2B5 /* PDKTEntityDataParserFactory.m in Sources */,
 				883ACAB51A0437DC006139C6 /* __PDKTEntityRelationshipOneToOne.m in Sources */,
 				883ACAB41A0437DC006139C6 /* __PDKTEntityRelationshipOneToMany.m in Sources */,
 				88C4645F1A1292D100A6B9D6 /* PictureEntity+PDKTModelBuilderEntity.m in Sources */,
 				883ACA111A041786006139C6 /* main.m in Sources */,
+				79DE77851E1FA1E6005862BB /* PDKTISO8601DateTransformer.m in Sources */,
 				883ACAD31A0438C9006139C6 /* NSObject+PDKTModelBuilder.m in Sources */,
 				883ACAB61A0437DC006139C6 /* PDKTEntityRelationship.m in Sources */,
 				794C3B211B5C1A86009A2941 /* PDKTDataFromURLImageTransformer.m in Sources */,
+				79DE77821E1FA19C005862BB /* PDKTDateTimeZoneCeroTransformer.m in Sources */,
 				798D5AEA1B5A6C8B0083B473 /* PDKTDataFromDictionaryTransformer.m in Sources */,
 				883ACA691A0417BA006139C6 /* __PDKTCoreDataEntityRelationshipOneToOne.m in Sources */,
 				883ACACF1A043815006139C6 /* PDKTStringTransformer.m in Sources */,
