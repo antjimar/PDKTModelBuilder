@@ -50,6 +50,8 @@
         id propertyValue = [[self class] propertyValueForKey:entityPropertyName sourcePath:sourcePath inDictionary:dictionary withTransformers:propertiesTypeTransformers];
         if (propertyValue) {
             [entity setValue:propertyValue forKey:entityPropertyName];
+        } else {
+            [entity setValue:nil forKey:entityPropertyName];
         }
     }];
 }
