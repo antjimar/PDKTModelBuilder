@@ -26,6 +26,7 @@
         dispatch_once(&onceToken, ^{
             entyPropertyDateFormatter = [[NSDateFormatter alloc] init];
             entyPropertyDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+            entyPropertyDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
             [entyPropertyDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
         });
         date = [entyPropertyDateFormatter dateFromString:objectDescription];
