@@ -22,13 +22,14 @@
         date = [NSDate dateWithTimeIntervalSince1970:[objectDescription integerValue]];
     } else {
         static dispatch_once_t onceToken;
-        static NSDateFormatter *entyPropertyDateFormatter;
+        static NSDateFormatter *entityPropertyDateFormatter;
         dispatch_once(&onceToken, ^{
-            entyPropertyDateFormatter = [[NSDateFormatter alloc] init];
-            entyPropertyDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-            [entyPropertyDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+            entityPropertyDateFormatter = [[NSDateFormatter alloc] init];
+            entityPropertyDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+            entityPropertyDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+            [entityPropertyDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
         });
-        date = [entyPropertyDateFormatter dateFromString:objectDescription];
+        date = [entityPropertyDateFormatter dateFromString:objectDescription];
     }
     return date;
 }

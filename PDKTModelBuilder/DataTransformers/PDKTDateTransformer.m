@@ -21,12 +21,12 @@
         date = [NSDate dateWithTimeIntervalSince1970:[objectDescription integerValue]];
     } else {
         static dispatch_once_t onceToken;
-        static NSDateFormatter *entyPropertyDateFormatter;
+        static NSDateFormatter *entityPropertyDateFormatter;
         dispatch_once(&onceToken, ^{
-            entyPropertyDateFormatter = [[NSDateFormatter alloc] init];
-            [entyPropertyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            entityPropertyDateFormatter = [[NSDateFormatter alloc] init];
+            [entityPropertyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         });
-        date = [entyPropertyDateFormatter dateFromString:objectDescription];
+        date = [entityPropertyDateFormatter dateFromString:objectDescription];
     }
     return date;
 }
