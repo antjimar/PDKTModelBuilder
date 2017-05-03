@@ -15,7 +15,6 @@
 #import "PDKTDateTransformer.h"
 #import "PDKTDataFromDictionaryTransformer.h"
 #import "PDKTDataFromURLImageTransformer.h"
-#import "PDKTDateTimeZoneCeroTransformer.h"
 #import "PDKTISO8601DateTransformer.h"
 #import "PDKTDateTimeWithoutMilisTransformer.h"
 
