@@ -10,9 +10,9 @@
 
 @implementation __PDKTCoreDataEntityRelationshipOneToMany
 - (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    __nonnull id relationshipData = [dictionary valueForKeyPath:self.keyPath];
+    id relationshipData = [dictionary valueForKeyPath:self.keyPath];
     if ([relationshipData isKindOfClass:[NSArray class]]) {
-        NSArray *relationshipDataArray = (NSArray *)relationshipData;
+        NSArray * _Nonnull relationshipDataArray = (NSArray *)relationshipData;
         if ([relationshipDataArray count] > 0) {
             
             // get set of current entities
@@ -76,6 +76,8 @@
         } else {
             [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
         }
+    } else {
+        [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
     }
 }
 - (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {

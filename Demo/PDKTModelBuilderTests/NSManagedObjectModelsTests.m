@@ -374,6 +374,50 @@
     XCTAssertNotNil(userUpdateRelations);
     XCTAssertTrue([userUpdateRelations.hasPictures count] == 0);
 }
+- (void)testRemoveAfterWithoutPicturesRelationshipOneToMany {
+    NSDictionary *userDictionary = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"updated_at": @1437216918,
+                                     @"pictures":@[
+                                             @{
+                                                 @"id":@"1",
+                                                 @"url":@"www.apple.com/images/picture.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 },
+                                             @{
+                                                 @"id":@"2",
+                                                 @"url":@"www.apple.com/images/picture2.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 }
+                                             ]
+                                     };
+    
+    UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    [self.managedObjectContext save:nil];
+    XCTAssertNotNil(user.hasPictures);
+    XCTAssertNotEqual(user.hasPictures.count, 0);
+    for (PictureEntity *picture in user.hasPictures) {
+        XCTAssert([picture isKindOfClass:[PictureEntity class]]);
+        // Check inverse relationship
+        XCTAssertEqualObjects(picture.author, user);
+    }
+    
+    NSDictionary *userUpdateRelationshipDictionary = @{
+                                                       @"id":@"1",
+                                                       @"name":@"John Doe",
+                                                       @"email":@"john.doe@apple.com",
+                                                       @"blog_url":@"www.tumblr.com/johndoe",
+                                                       @"updated_at": @1437216958
+                                                       };
+    
+    UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
+    [self.managedObjectContext save:nil];
+    XCTAssertNotNil(userUpdateRelations);
+    XCTAssertTrue([userUpdateRelations.hasPictures count] == 0);
+}
 - (void)testRemoveOneItemAfterRelationshipOneToMany {
     NSDictionary *userDictionary = @{
                                      @"id":@"1",
