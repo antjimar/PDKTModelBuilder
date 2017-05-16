@@ -10,7 +10,7 @@
 
 @implementation __PDKTCoreDataEntityRelationshipOneToMany
 - (void)parseRelationshipInDictionary:(NSDictionary *)dictionary withEntity:(NSManagedObject *)entity relationshipProperty:(NSString *)relationshipProperty inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    id relationshipData = [dictionary valueForKeyPath:self.keyPath];
+    __nonnull id relationshipData = [dictionary valueForKeyPath:self.keyPath];
     if ([relationshipData isKindOfClass:[NSArray class]]) {
         NSArray *relationshipDataArray = (NSArray *)relationshipData;
         if ([relationshipDataArray count] > 0) {
