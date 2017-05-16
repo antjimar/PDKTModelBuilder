@@ -9,15 +9,10 @@
 #import "PDKTFloatTransformer.h"
 
 @implementation PDKTFloatTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
-    if (![object respondsToSelector:@selector(floatValue)])
-    {
+- (id)tranformValueFromObject:(id)object {
+    if (![object respondsToSelector:@selector(floatValue)]) {
         return [NSNumber numberWithFloat:0];
     }
-    
     return [NSNumber numberWithFloat:[object floatValue]];
 }
-
 @end

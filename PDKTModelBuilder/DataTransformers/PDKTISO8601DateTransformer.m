@@ -1,15 +1,18 @@
 //
-//  EntityPropertyTimeStamp.m
+//  PDKTISO8601DateTransformer.m
 //  PDKTModelBuilder
 //
-//  Created by Ruben Mendez Puente on 17/05/12.
-//  Copyright (c) 2012 minube.com. All rights reserved.
+//  Created by sergio on 01/03/16.
+//  Copyright © 2016 Produkt. All rights reserved.
 //
 
-#import "PDKTDateTransformer.h"
+#import "PDKTISO8601DateTransformer.h"
 
-@implementation PDKTDateTransformer
+@implementation PDKTISO8601DateTransformer
+
 - (id)tranformValueFromObject:(id)object {
+    // Returns a NSDate object that corresponds to the specified RFC 3339 date time string.
+    
     if (!object || [object isEqual:[NSNull null]]) {
         return nil;
     }
@@ -24,10 +27,13 @@
         static NSDateFormatter *entityPropertyDateFormatter;
         dispatch_once(&onceToken, ^{
             entityPropertyDateFormatter = [[NSDateFormatter alloc] init];
-            [entityPropertyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            entityPropertyDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+            entityPropertyDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+            [entityPropertyDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
         });
         date = [entityPropertyDateFormatter dateFromString:objectDescription];
     }
     return date;
 }
+
 @end

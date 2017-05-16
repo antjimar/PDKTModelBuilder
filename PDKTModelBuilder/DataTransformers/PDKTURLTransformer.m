@@ -9,19 +9,16 @@
 #import "PDKTURLTransformer.h"
 
 @implementation PDKTURLTransformer
-
-- (id)tranformValueFromObject:(id)object
-{
+- (id)tranformValueFromObject:(id)object {
     if ([object isKindOfClass:[NSURL class]]) {
         return [object copy];
-    }else if ([object isKindOfClass:[NSString class]]){
+    } else if ([object isKindOfClass:[NSString class]]) {
         NSString *urlString = [object stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         return [self isValidURLString:urlString] ? [NSURL URLWithString:urlString] : nil;
     }
     return nil;
 }
-
-- (BOOL)isValidURLString:(NSString *)urlString{
+- (BOOL)isValidURLString:(NSString *)urlString {
     NSString *urlRegEx = @"((http|https)://)?(([A-Za-z0-9-_+]+)[.])?([A-Za-z0-9-_+]+)[.]([A-Za-z0-9-_+]+)(/([A-Za-z0-9-_])*)*([?](&?[A-Za-z0-9-_]+=[A-Za-z0-9-_]+)+)?(#[A-Za-z0-9-_]+)?";
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlRegEx
@@ -30,5 +27,4 @@
     NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
     return match!=nil ? YES : NO;
 }
-
 @end

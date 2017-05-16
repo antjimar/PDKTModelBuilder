@@ -10,7 +10,7 @@
 #import "__PDKTCoreDataEntityDataParser.h"
 
 @implementation PDKTCoreDataEntityDataParserFactory
-+ (PDKTEntityDataParser *)dataParserForCoreDataEntityWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
++ (PDKTEntityDataParser *)dataParserForCoreDataEntityWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     PDKTEntityDataParser *dataParser;
     dataParser = [[__PDKTCoreDataEntityDataParser alloc]initWithDictionary:dictionary andEntity:entity];
     return dataParser;

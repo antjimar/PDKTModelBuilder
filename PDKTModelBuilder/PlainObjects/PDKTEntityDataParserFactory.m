@@ -10,7 +10,7 @@
 #import "__PDKTPlainObjectEntityDataParser.h"
 
 @implementation PDKTEntityDataParserFactory
-+ (PDKTEntityDataParser *)dataParserForPlanEntityWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity{
++ (PDKTEntityDataParser *)dataParserForPlanEntityWithDictionary:(NSDictionary *)dictionary andEntity:(NSObject<PDKTModelBuilderEntity> *)entity {
     return [[__PDKTPlainObjectEntityDataParser alloc]initWithDictionary:dictionary andEntity:entity];
 }
 @end
