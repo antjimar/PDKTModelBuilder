@@ -14,11 +14,63 @@
     if ([relationshipData isKindOfClass:[NSArray class]]) {
         NSArray *relationshipDataArray = (NSArray *)relationshipData;
         if ([relationshipDataArray count] > 0) {
-            [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
-            for (NSDictionary *relationshipItem in relationshipDataArray) {
-                id item = [self parseItemData:relationshipItem withClass:self.relatedClass inManagedObjectContext:managedObjectContext];
-                if (item) {
-                    [self addItem:item toEntity:entity toColletionInPropertyWithName:relationshipProperty];
+            
+            // get set of current entities
+            NSSet *relationShipSet = [entity valueForKey:relationshipProperty];
+            // list of currents id's
+            NSMutableArray *currentIds = [[NSMutableArray alloc] init];
+            if (relationShipSet.count > 0) {
+                NSManagedObject *entity = relationShipSet.allObjects.firstObject;
+                if ([entity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
+                    NSString *objectIdName = [[(id<PDKTModelBuilderCoreDataEntity>)entity class] entityIdPropertyName];
+                    for (NSManagedObject *relationShipEntity in relationShipSet.allObjects) {
+                        if ([relationShipEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
+                            NSString *objectIdValue = [relationShipEntity valueForKey:objectIdName];
+                            [currentIds addObject:objectIdValue];
+                        }
+                    }
+                    
+                    // here, currentIds has a list of entities ids saved in the data base
+                    
+                    // get ids from json to compare
+                    // id property binding
+                    NSDictionary *propertiesBindings = [[(id<PDKTModelBuilderCoreDataEntity>)entity class] propertiesBindings];
+                    NSString *sourcePath = [propertiesBindings valueForKey:objectIdName];
+                    
+                    NSMutableArray *serverIds = [[NSMutableArray alloc] init];
+                    for (NSDictionary *relationshipItem in relationshipDataArray) {
+                        [serverIds addObject:[relationshipItem objectForKey:sourcePath]];
+                    }
+                    
+                    // ids for entities to remove from data base
+                    NSMutableArray *entitiesIdsToRemove = [NSMutableArray arrayWithArray:currentIds];
+                    [entitiesIdsToRemove removeObjectsInArray:serverIds];
+                    
+                    // remove
+                    for (NSManagedObject *relationShipEntity in relationShipSet.allObjects) {
+                        if ([relationShipEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
+                            NSString *objectIdValue = [relationShipEntity valueForKey:objectIdName];
+                            if ([entitiesIdsToRemove containsObject:objectIdValue]) {
+                                [managedObjectContext deleteObject:relationShipEntity];
+                            }
+                        }
+                    }
+                    
+                    // update current entities
+                    for (NSDictionary *relationshipItem in relationshipDataArray) {
+                        id item = [self parseItemData:relationshipItem withClass:self.relatedClass inManagedObjectContext:managedObjectContext];
+                        if (item) {
+                            [self addItem:item toEntity:entity toColletionInPropertyWithName:relationshipProperty relationShipSet: relationShipSet];
+                        }
+                    }
+                }
+            } else {
+                // current object doesn't have relationship data and we have to add all data array from json (new entities to add)
+                for (NSDictionary *relationshipItem in relationshipDataArray) {
+                    id item = [self parseItemData:relationshipItem withClass:self.relatedClass inManagedObjectContext:managedObjectContext];
+                    if (item) {
+                        [self addItem:item toEntity:entity toColletionInPropertyWithName:relationshipProperty relationShipSet: relationShipSet];
+                    }
                 }
             }
         } else {
@@ -29,8 +81,7 @@
 - (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     return [itemClass updateOrInsertIntoManagedObjectContext:managedObjectContext withDictionary:itemData];
 }
-- (void)addItem:(id)item toEntity:(NSManagedObject *)entity toColletionInPropertyWithName:(NSString *)relationshipPropertyName {
-    NSSet *relationShipSet = [entity valueForKey:relationshipPropertyName];
+- (void)addItem:(id)item toEntity:(NSManagedObject *)entity toColletionInPropertyWithName:(NSString *)relationshipPropertyName relationShipSet:(NSSet *)relationShipSet {
     if (![relationShipSet containsObject:item]) {
         NSString *addObjectsSelectorName = [NSString stringWithFormat:@"add%@Object:", [relationshipPropertyName stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[relationshipPropertyName substringToIndex:1] capitalizedString]]];
         SEL selector = NSSelectorFromString(addObjectsSelectorName);
