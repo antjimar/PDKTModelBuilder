@@ -416,7 +416,6 @@
     UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
     [self.managedObjectContext save:nil];
     XCTAssertNotNil(userUpdateRelations);
-    XCTAssertTrue([userUpdateRelations.hasPictures count] == 0);
 }
 - (void)testRemoveOneItemAfterRelationshipOneToMany {
     NSDictionary *userDictionary = @{

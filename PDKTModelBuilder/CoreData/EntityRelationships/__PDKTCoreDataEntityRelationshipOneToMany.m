@@ -86,8 +86,6 @@
         } else {
             [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
         }
-    } else {
-        [self removeInContext:managedObjectContext relationshipProperty:relationshipProperty entity:entity];
     }
 }
 - (id)parseItemData:(NSDictionary *)itemData withClass:(Class)itemClass inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
