@@ -37,9 +37,19 @@
                     NSDictionary *propertiesBindings = [[(id<PDKTModelBuilderCoreDataEntity>)entity class] propertiesBindings];
                     NSString *sourcePath = [propertiesBindings valueForKey:objectIdName];
                     
+                    NSDictionary *propertiesTypeTransformers = @{};
+                    if ([[entity class] respondsToSelector:@selector(propertiesTypeTransformers)]) {
+                        propertiesTypeTransformers = [[entity class] propertiesTypeTransformers];
+                    }
+                    
                     NSMutableArray *serverIds = [[NSMutableArray alloc] init];
                     for (NSDictionary *relationshipItem in relationshipDataArray) {
-                        [serverIds addObject:[relationshipItem objectForKey:sourcePath]];
+                        id rawValue = [relationshipItem valueForKeyPath:sourcePath];
+                        if (rawValue && ![rawValue isKindOfClass:[NSNull class]]) {
+                            PDKTDataTransformer *entityProperty = [propertiesTypeTransformers valueForKey:objectIdName]?:[PDKTStringTransformer new];
+                            id propertyValue = [entityProperty tranformValueFromObject:rawValue];
+                            [serverIds addObject:propertyValue];
+                        }
                     }
                     
                     // ids for entities to remove from data base
