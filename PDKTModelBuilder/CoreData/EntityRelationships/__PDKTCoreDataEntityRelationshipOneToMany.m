@@ -20,9 +20,9 @@
             // list of currents id's
             NSMutableArray *currentIds = [[NSMutableArray alloc] init];
             if (relationShipSet.count > 0) {
-                NSManagedObject *entity = relationShipSet.allObjects.firstObject;
-                if ([entity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
-                    NSString *objectIdName = [[(id<PDKTModelBuilderCoreDataEntity>)entity class] entityIdPropertyName];
+                NSManagedObject *relatedEntity = relationShipSet.allObjects.firstObject;
+                if ([relatedEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
+                    NSString *objectIdName = [[(id<PDKTModelBuilderCoreDataEntity>)relatedEntity class] entityIdPropertyName];
                     for (NSManagedObject *relationShipEntity in relationShipSet.allObjects) {
                         if ([relationShipEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
                             NSString *objectIdValue = [relationShipEntity valueForKey:objectIdName];
@@ -34,12 +34,12 @@
                     
                     // get ids from json to compare
                     // id property binding
-                    NSDictionary *propertiesBindings = [[(id<PDKTModelBuilderCoreDataEntity>)entity class] propertiesBindings];
+                    NSDictionary *propertiesBindings = [[(id<PDKTModelBuilderCoreDataEntity>)relatedEntity class] propertiesBindings];
                     NSString *sourcePath = [propertiesBindings valueForKey:objectIdName];
                     
                     NSDictionary *propertiesTypeTransformers = @{};
-                    if ([[entity class] respondsToSelector:@selector(propertiesTypeTransformers)]) {
-                        propertiesTypeTransformers = [[entity class] propertiesTypeTransformers];
+                    if ([[relatedEntity class] respondsToSelector:@selector(propertiesTypeTransformers)]) {
+                        propertiesTypeTransformers = [[relatedEntity class] propertiesTypeTransformers];
                     }
                     
                     NSMutableArray *serverIds = [[NSMutableArray alloc] init];
@@ -56,12 +56,14 @@
                     NSMutableArray *entitiesIdsToRemove = [NSMutableArray arrayWithArray:currentIds];
                     [entitiesIdsToRemove removeObjectsInArray:serverIds];
                     
-                    // remove
-                    for (NSManagedObject *relationShipEntity in relationShipSet.allObjects) {
-                        if ([relationShipEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
-                            NSString *objectIdValue = [relationShipEntity valueForKey:objectIdName];
-                            if ([entitiesIdsToRemove containsObject:objectIdValue]) {
-                                [managedObjectContext deleteObject:relationShipEntity];
+                    // remove // TODO check entitiesIdsToRemove.count > 0
+                    if (entitiesIdsToRemove.count > 0) {
+                        for (NSManagedObject *relationShipEntity in relationShipSet.allObjects) {
+                            if ([relationShipEntity conformsToProtocol: @protocol(PDKTModelBuilderCoreDataEntity)]) {
+                                NSString *objectIdValue = [relationShipEntity valueForKey:objectIdName];
+                                if ([entitiesIdsToRemove containsObject:objectIdValue]) {
+                                    [managedObjectContext deleteObject:relationShipEntity];
+                                }
                             }
                         }
                     }

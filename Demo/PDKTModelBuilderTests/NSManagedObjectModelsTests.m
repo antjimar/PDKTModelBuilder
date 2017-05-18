@@ -265,12 +265,79 @@
         if ([picture.pictureId isEqualToString:@"1"]) {
             XCTAssertEqualObjects(picture.pictureURL, [NSURL URLWithString:@"www.apple.com/images/picture_updated.jpg"]);
         }
-        
-        
-        
-        
+        // Check inverse relationship
+        XCTAssertEqualObjects(picture.author, user);
+    }
+}
+- (void)testNSManagedObjectsRelationshipsUpdatedWithOneMore {
+    NSDictionary *userDictionary = @{
+                                     @"id":@"1",
+                                     @"name":@"John Doe",
+                                     @"email":@"john.doe@apple.com",
+                                     @"blog_url":@"www.tumblr.com/johndoe",
+                                     @"updated_at": @1437216918,
+                                     @"pictures":@[
+                                             @{
+                                                 @"id":@"1",
+                                                 @"url":@"www.apple.com/images/picture.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 },
+                                             @{
+                                                 @"id":@"2",
+                                                 @"url":@"www.apple.com/images/picture2.jpg",
+                                                 @"published_on":@"1415735002"
+                                                 }
+                                             ]
+                                     };
+    
+    UserEntity *user = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userDictionary];
+    XCTAssertNotNil(user.hasPictures);
+    XCTAssertNotEqual(user.hasPictures.count, 0);
+    
+    
+    NSMutableDictionary *pictureIdObjectId = [NSMutableDictionary dictionary];
+    for (PictureEntity *picture in user.hasPictures) {
+        XCTAssert([picture isKindOfClass:[PictureEntity class]]);
+        [pictureIdObjectId setObject:picture.objectID forKey:picture.pictureId];
+        // Check inverse relationship
+        XCTAssertEqualObjects(picture.author, user);
     }
     
+    NSDictionary *userUpdateRelationshipDictionary = @{
+                                                       @"id":@"1",
+                                                       @"name":@"John Doe",
+                                                       @"email":@"john.doe@apple.com",
+                                                       @"blog_url":@"www.tumblr.com/johndoe",
+                                                       @"updated_at": @1437216918,
+                                                       @"pictures":@[
+                                                               @{
+                                                                   @"id":@"1",
+                                                                   @"url":@"www.apple.com/images/picture_updated.jpg",
+                                                                   @"published_on":@"1415735002"
+                                                                   },
+                                                               @{
+                                                                   @"id":@"2",
+                                                                   @"url":@"www.apple.com/images/picture2.jpg",
+                                                                   @"published_on":@"1415735002"
+                                                                   },
+                                                               @{
+                                                                   @"id":@"3",
+                                                                   @"url":@"www.apple.com/images/picture3.jpg",
+                                                                   @"published_on":@"1415735004"
+                                                                   }
+                                                               ]
+                                                       };
+    
+    UserEntity *userUpdateRelations = [UserEntity updateOrInsertIntoManagedObjectContext:self.managedObjectContext withDictionary:userUpdateRelationshipDictionary];
+    XCTAssertNotNil(userUpdateRelations);
+    XCTAssert(userUpdateRelations.hasPictures.count == 3);
+    for (PictureEntity *picture in userUpdateRelations.hasPictures) {
+        if ([picture.pictureId isEqualToString:@"1"]) {
+            XCTAssertEqualObjects(picture.pictureURL, [NSURL URLWithString:@"www.apple.com/images/picture_updated.jpg"]);
+        }
+        // Check inverse relationship
+        XCTAssertEqualObjects(picture.author, user);
+    }
 }
 - (void)testNSManagedObjectsOneToManyRelationshipsRemoveElementsFromList {
     NSDictionary *userDictionary = @{
