@@ -55,6 +55,8 @@
 		88C4646D1A12938200A6B9D6 /* TestablePicture+PDKTModelBuilderEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C464681A12938200A6B9D6 /* TestablePicture+PDKTModelBuilderEntity.m */; };
 		88C4646E1A12938200A6B9D6 /* TestablePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4646A1A12938200A6B9D6 /* TestablePicture.m */; };
 		88C464751A129FAD00A6B9D6 /* PictureEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C464741A129FAD00A6B9D6 /* PictureEntity.m */; };
+		DD0746E82020CB9600DFCA43 /* PDKTLongTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0746E72020CB9600DFCA43 /* PDKTLongTransformer.m */; };
+		DD0746EB2020CC3900DFCA43 /* LongTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0746EA2020CC3900DFCA43 /* LongTransformerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,9 @@
 		88C4646A1A12938200A6B9D6 /* TestablePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestablePicture.m; sourceTree = "<group>"; };
 		88C464731A129FAD00A6B9D6 /* PictureEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureEntity.h; sourceTree = "<group>"; };
 		88C464741A129FAD00A6B9D6 /* PictureEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureEntity.m; sourceTree = "<group>"; };
+		DD0746E62020CB9600DFCA43 /* PDKTLongTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDKTLongTransformer.h; sourceTree = "<group>"; };
+		DD0746E72020CB9600DFCA43 /* PDKTLongTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDKTLongTransformer.m; sourceTree = "<group>"; };
+		DD0746EA2020CC3900DFCA43 /* LongTransformerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongTransformerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +289,7 @@
 				883ACA9A1A042638006139C6 /* DoubleTransformerTests.m */,
 				883ACA9C1A0428C8006139C6 /* FloatTransformerTests.m */,
 				883ACA9E1A042937006139C6 /* IntegerTransformerTests.m */,
+				DD0746EA2020CC3900DFCA43 /* LongTransformerTests.m */,
 				883ACAA01A0429D6006139C6 /* StringTranformerTests.m */,
 				883ACAA21A042B63006139C6 /* URLTransformerTests.m */,
 			);
@@ -354,6 +360,8 @@
 				883ACAC21A043815006139C6 /* PDKTFloatTransformer.m */,
 				883ACAC31A043815006139C6 /* PDKTIntegerTransformer.h */,
 				883ACAC41A043815006139C6 /* PDKTIntegerTransformer.m */,
+				DD0746E62020CB9600DFCA43 /* PDKTLongTransformer.h */,
+				DD0746E72020CB9600DFCA43 /* PDKTLongTransformer.m */,
 				883ACAC51A043815006139C6 /* PDKTStringTransformer.h */,
 				883ACAC61A043815006139C6 /* PDKTStringTransformer.m */,
 				883ACAC71A043815006139C6 /* PDKTURLTransformer.h */,
@@ -509,6 +517,7 @@
 				883ACAC91A043815006139C6 /* PDKTBoolTransformer.m in Sources */,
 				883ACA6B1A0417BA006139C6 /* NSManagedObject+PDKTModelBuilder.m in Sources */,
 				883ACAAC1A04379E006139C6 /* __PDKTPlainObjectEntityDataParser.m in Sources */,
+				DD0746E82020CB9600DFCA43 /* PDKTLongTransformer.m in Sources */,
 				88619E2A1A7FC2DF009AD2B5 /* PDKTCoreDataEntityDataParserFactory.m in Sources */,
 				883ACAD01A043815006139C6 /* PDKTURLTransformer.m in Sources */,
 				883ACA6A1A0417BA006139C6 /* PDKTCoreDataEntityRelationship.m in Sources */,
@@ -546,6 +555,7 @@
 				88C4646E1A12938200A6B9D6 /* TestablePicture.m in Sources */,
 				883ACA971A041CE8006139C6 /* BoolTransformerTests.m in Sources */,
 				883ACA9B1A042638006139C6 /* DoubleTransformerTests.m in Sources */,
+				DD0746EB2020CC3900DFCA43 /* LongTransformerTests.m in Sources */,
 				883ACAA11A0429D6006139C6 /* StringTranformerTests.m in Sources */,
 				88C464511A1291D000A6B9D6 /* NSManagedObjectModelsTests.m in Sources */,
 				883ACAA31A042B63006139C6 /* URLTransformerTests.m in Sources */,
